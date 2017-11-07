@@ -31,7 +31,7 @@ function handleIt(req, res) {
   		}
   	);	
 	
-	console.log("Got a request " + req.url);
+	// console.log("Got a request " + req.url);
 }
 
 
@@ -44,13 +44,11 @@ var io = require('socket.io').listen(httpServer);
 
 io.sockets.on('connection', 
 	function (socket) {	
-		console.log("We have a new client: " + socket.id);
 		userCount ++;
 		console.log("we have "+ userCount + " in total.");
-		io.sockets.emit('motor', userCount);
-		
-		if(userCount > 10){
-			userCount = 10;
+		if(userCount > 15){
+			userCount = 15;
 		}
+		io.sockets.emit('motor', userCount);
 	}
 );
